@@ -41,7 +41,7 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 
-new_player = Player("Portobello", "outside")
+new_player = Player("Portobello", room["outside"])
 
 # Write a loop that:
 #
@@ -65,7 +65,7 @@ def game():
     while is_playing == True:
         print(" ")
         print(" ")
-        print(f"You are in {current_player.current_room.name}")
+        print(f"{current_player.current_room.name.upper()}")
         print(" ")
         print(
             f"A little about this room : {current_player.current_room.description}")
@@ -73,13 +73,18 @@ def game():
         action = input("\n".join(textwrap.wrap(
             "\nYou can MOVE using n, s, e, w.\n You can QUIT by pressing q.\n What would you like to do? :")))
         if action in ["n", "s", "e", "w"]:
-            current_player.move_player(action)
+            if current_player.move_player(action) == False:
+                print(" ")
+                print("!!! -- OOPS, YOU CAN'T MOVE THERE. -- !!!")
+
         elif action == "q":
             is_playing = False
             # close()
         else:
+            print(" ")
             print(
-                "That's not a valid action. \nYou can MOVE using n, s, e, w.\n You can QUIT by pressing q")
+                "!!! -- OOPS, THAT'S NOT SOMETHING YOU CAN DO. -- !!!")
+            print("\nYou can MOVE using n, s, e, w.\n You can QUIT by pressing q")
 
 
 game()

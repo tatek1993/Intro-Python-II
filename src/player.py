@@ -11,12 +11,18 @@ class Player:
         current_room = self.current_room
         if direction == "n" and current_room.n_to != None:
             self.current_room = current_room.n_to
+            return True
         if direction == "s" and current_room.s_to != None:
             self.current_room = current_room.s_to
+            return True
         if direction == "e" and current_room.e_to != None:
             self.current_room = current_room.e_to
+            return True
         if direction == "w" and current_room.w_to != None:
             self.current_room = current_room.w_to
+            return True
+        else:
+            return False
 
     def describe_room(self):
         room = self.current_room
