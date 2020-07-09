@@ -2,13 +2,13 @@
 # currently.
 
 class Player:
-    def __init__(self, location, name):
-        self.location = location
+    def __init__(self, name, current_room):
+        self.current_room = current_room
         self.name = name
 
     def move_player(self, direction)
     move = f"{direction}"
-    current_room = self.location
+    current_room = self.current_room
 
-    def describe_location(self):
-        room = self.location
+    def describe_room(self):
+        room = self.current_room
