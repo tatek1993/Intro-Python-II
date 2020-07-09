@@ -6,9 +6,17 @@ class Player:
         self.current_room = current_room
         self.name = name
 
-    def move_player(self, direction)
-    move = f"{direction}"
-    current_room = self.current_room
+    def move_player(self, direction):
+        move = f"{direction}"
+        current_room = self.current_room
+        if direction == "n" and current_room.n_to != None:
+            self.current_room = current_room.n_to
+        if direction == "s" and current_room.s_to != None:
+            self.current_room = current_room.s_to
+        if direction == "e" and current_room.e_to != None:
+            self.current_room = current_room.e_to
+        if direction == "w" and current_room.w_to != None:
+            self.current_room = current_room.w_to
 
     def describe_room(self):
         room = self.current_room

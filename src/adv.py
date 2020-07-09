@@ -1,6 +1,6 @@
 from room import Room
 from player import Player
-
+import textwrap
 
 # Declare all the rooms
 
@@ -57,7 +57,29 @@ new_player = Player("Portobello", "outside")
 
 def game():
     player_name = input(f"\n What is your name? \n Enter Your Name : ")
-    current_player = Player(player_name, "outside")
+    current_player = Player(player_name, room["outside"])
     is_playing = True
-    print(
-        f"Welcome, {player_name}. Have a look around and see what you can find.")
+
+    print(f"Welcome, {player_name}. Explore and see what you can find.")
+
+    while is_playing == True:
+        print(" ")
+        print(" ")
+        print(f"You are in {current_player.current_room.name}")
+        print(" ")
+        print(
+            f"A little about this room : {current_player.current_room.description}")
+        print(" ")
+        action = input("\n".join(textwrap.wrap(
+            "\nYou can MOVE using n, s, e, w.\n You can QUIT by pressing q.\n What would you like to do? :")))
+        if action in ["n", "s", "e", "w"]:
+            current_player.move_player(action)
+        elif action == "q":
+            is_playing = False
+            # close()
+        else:
+            print(
+                "That's not a valid action. \nYou can MOVE using n, s, e, w.\n You can QUIT by pressing q")
+
+
+game()
