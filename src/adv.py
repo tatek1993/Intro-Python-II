@@ -10,11 +10,11 @@ room = {
                      "North of you, the cave mount beckons"),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", [Item("banana", "What's a Foyer without a single, ripe banana sitting in the middle of the floor?")]),
+passages run north and east.""", [Item("banana", "What's a room without a single, ripe banana sitting in the middle of the floor?")]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""", [Item("melon", "A single melon looks out across the chasm. It can't figure out a way across, either. Hm.")]),
+the distance, but there is no way across the chasm.""", [Item("melon", "A single melon sits in a chair. It looks melon-cholic. Hm.")]),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
 to north. The smell of gold permeates the air.""", [Item("grapes", "This room is far too narrow for a regular sized fruit, but there are some grapes lined up single-file against the wall.")]),
@@ -69,7 +69,7 @@ def game():
     while is_playing == True:
 
         action = input("\n".join(textwrap.wrap(
-            "\nYou can MOVE using 'n' for North, 's' for South, 'e' for East, and 'w' for Waffle.\n You can LOOK for loot using 'look'.\n You can QUIT by pressing q.\n What would you like to do? :")))
+            "\nMOVE using 'n' for North, 's' for South, 'e' for East, and 'w' for Waffle. \nLOOK for loot using 'look'.\nGET an item you find using 'get ___' \nDROP an item using 'drop ___' \nQUIT using 'q'.\nWhat would you like to do? :")))
         if action in ["n", "s", "e", "w"]:
             if current_player.move_player(action) == True:
                 current_player.describe_room()
@@ -82,6 +82,9 @@ def game():
         elif action.startswith("get"):
             print(" ")
             current_player.get(action[4:])
+        elif action.startswith("drop"):
+            print(" ")
+            current_player.drop(action[5:])
         elif action == "q":
             is_playing = False
             # close()
@@ -89,7 +92,7 @@ def game():
             print(" ")
             print(
                 "!!! -- OOPS, THAT'S NOT SOMETHING YOU CAN DO. -- !!!")
-            print("\nYou can MOVE using n, s, e, w.\n You can QUIT by pressing q")
+            print(" ")
 
 
 game()
