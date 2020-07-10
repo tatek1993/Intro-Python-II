@@ -1,6 +1,7 @@
 # Write a class to hold player information, e.g. what room they are in
 # currently.
 
+
 class Player:
     def __init__(self, name, current_room):
         self.current_room = current_room
@@ -24,5 +25,33 @@ class Player:
         else:
             return False
 
+    def look(self):
+        items = self.current_room.items
+        for item in items:
+            print(item.description)
+            print(" ")
+
+    def get(self, item_name):
+        inv = []
+        found = False
+        for item in self.current_room.items:
+            if item.name == item_name:
+                inv.append(item)
+                self.current_room.items.remove(item)
+                found = True
+                print('You picked it up and put it in your comically large pocket.')
+                print(" ")
+        if found == False:
+            print('There is nothing here. You looted the whole room. Who raised you?')
+            print(" ")
+
+    def drop(self, item):
+        pass
+
     def describe_room(self):
-        room = self.current_room
+        print(" ")
+        print(f"{self.current_room.name.upper()}")
+        print(" ")
+        print(
+            f"A little about this room : {self.current_room.description}")
+        print(" ")
